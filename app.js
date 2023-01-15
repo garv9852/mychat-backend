@@ -1,6 +1,7 @@
 const express=require("express");
 const app=express();
 app.use(express.json())
+const cors = require('cors');
 const server=require('http').createServer(app);
 const io=require('socket.io')(server,{
     cors:{
@@ -8,8 +9,8 @@ const io=require('socket.io')(server,{
         method:["GET","POST"]   
     }
 });
-
-app.get("/",(req,res)=>{
+app.use(cors());
+server.get("/",(req,res)=>{
     res.send("Home Page")
 })
 let AllClients=[
