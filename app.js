@@ -1,5 +1,4 @@
 const express=require("express");
-const path = require('path');
 const app=express();
 app.use(express.json())
 const server=require('http').createServer(app);
@@ -10,14 +9,10 @@ const io=require('socket.io')(server,{
     }
 });
 
-app.use(express.static('public'))
-app.get('/', (req, res) => {
-    res.sendFile('index.html', {root: path.join(__dirname, 'public')});
-})
 let AllClients=[
 
 ]
-const port=process.env.port || 5500;
+const port=5500;
 io.on("connection",(socket)=>{
     socket.on("JOIN",({name})=>{
         socket.emit("ALL_PEER",(AllClients))
