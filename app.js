@@ -9,10 +9,12 @@ const io=require('socket.io')(server,{
     }
 });
 
+app.get("/",(req,res)=>{
+    res.send("Home Page")
+})
 let AllClients=[
 
 ]
-const port=5500;
 io.on("connection",(socket)=>{
     socket.on("JOIN",({name})=>{
         socket.emit("ALL_PEER",(AllClients))
@@ -31,8 +33,8 @@ io.on("connection",(socket)=>{
     })
 
 })
-server.listen(port,()=>{
-    console.log("server created",port);
+server.listen(process.env.PORT || 5000,()=>{
+    console.log("server created");
 })
 
 module.exports=server;
