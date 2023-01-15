@@ -9,6 +9,9 @@ const io=require('socket.io')(server,{
     }
 });
 
+app.get("/",(req,res)=>{
+    res.json({name:"garv"})
+})
 let AllClients=[
 
 ]
