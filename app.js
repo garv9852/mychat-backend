@@ -1,4 +1,6 @@
 const express=require("express");
+const path = require('path');
+app.use(express.static('public'))
 const app=express();
 app.use(express.json())
 const server=require('http').createServer(app);
@@ -9,8 +11,8 @@ const io=require('socket.io')(server,{
     }
 });
 
-app.get("/",(req,res)=>{
-    res.json({name:"garv"})
+app.get('/', (req, res) => {
+    res.sendFile('index.html', {root: path.join(__dirname, 'public')});
 })
 let AllClients=[
 
